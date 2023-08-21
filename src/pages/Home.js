@@ -103,7 +103,7 @@ const Home = () => {
             <CategoryCard img={`electronics.jpg`} category={"ELECTRONICS"} />
           </div>
         </div>
-        <div className="row g-4 my-4 px-5 ">
+        <div className="row g-4 my-4 px-md-5 ">
           <h1 className="heading text-center mb-3">Latest Arrivals</h1>
           {loading ? (
             <Loading />

@@ -21,7 +21,7 @@ function ProductDetails() {
       }
     };
     fetchProduct();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -57,8 +57,7 @@ function ProductDetails() {
           <div className="row  justify-content-between g-5">
             {loading && (
               <div className="d-flex justify-content-center pt-5">
-                {" "}
-                <Loading />{" "}
+                <Loading />
               </div>
             )}
             {
@@ -67,7 +66,7 @@ function ProductDetails() {
                     <div className="col-lg-5 d-flex justify-content-center">
               <img
                 src={product.image}
-                alt="product image"
+                alt="product"
                 className="img-fluid "
               />
             </div>

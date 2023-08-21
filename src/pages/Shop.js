@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Card from "../components/Card";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
+import {HiMenuAlt2} from "react-icons/hi"
 
 const Shop = () => {
   const [loading, setLoading] = useState(true);
@@ -15,12 +16,12 @@ const Shop = () => {
       setLoading(false);
       setProducts(data);
     } catch (error) {
-      console.log("Error fetching products", error);
+      console.log("Error fetching products", error, category);
     }
   };
   useEffect(() => {
     fetchProducts();
-  }, []);
+  });
   return (
     <>
       <section className="bg-gray-100">
@@ -46,9 +47,97 @@ const Shop = () => {
       </section>
 
       <section>
-        <div className="container py-5 mt-4">
-          <div className="row g-4  justify-content-between position-relative">
-            <div className="col-3">
+        <div className="container py-md-5 mt-4">
+          <div className="row g-4  justify-content-center justify-content-md-between">
+            <div className="col-12 d-md-none d-flex align-items-center gap-3">
+              
+              <button
+                class="btn btn-sm border rounded-0"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#categoriesFilter"
+                aria-controls="categoriesFilter"
+              >
+                <HiMenuAlt2 className="fs-2"/>
+              </button>
+              <h6 className="heading">Filter Products</h6>
+
+              <div
+                class="offcanvas offcanvas-start"
+                tabindex="-1"
+                id="categoriesFilter"
+                aria-labelledby="filterLabel"
+              >
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="filterLabel">
+                    Shpo Filter
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close text-reset"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="offcanvas-body">
+                <div className="d-flex flex-column mt-3 gap-3 categories">
+                <h6 onClick={() => setCategory("")}>
+                  All Products{" "}
+                  <span className="text-muted">({products.length})</span>{" "}
+                </h6>
+                <h6 onClick={() => setCategory("men's clothing")}>
+                  Men{" "}
+                  <span className="text-muted">
+                    (
+                    {
+                      products.filter(
+                        (product) => product.category === "men's clothing"
+                      ).length
+                    }
+                    )
+                  </span>
+                </h6>
+                <h6 onClick={() => setCategory("women's clothing")}>
+                  Women{" "}
+                  <span className="text-muted">
+                    (
+                    {
+                      products.filter(
+                        (product) => product.category === "women's clothing"
+                      ).length
+                    }
+                    )
+                  </span>
+                </h6>
+                <h6 onClick={() => setCategory("jewelery")}>
+                  Jewelery{" "}
+                  <span className="text-muted">
+                    (
+                    {
+                      products.filter(
+                        (product) => product.category === "jewelery"
+                      ).length
+                    }
+                    )
+                  </span>
+                </h6>
+                <h6 onClick={() => setCategory("electronics")}>
+                  Electronics{" "}
+                  <span className="text-muted">
+                    (
+                    {
+                      products.filter(
+                        (product) => product.category === "electronics"
+                      ).length
+                    }
+                    )
+                  </span>
+                </h6>
+              </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-3 d-none d-md-block">
               <div className="border-bottom">
                 <h5 className="heading text">CATEGORIES</h5>
               </div>
@@ -63,7 +152,7 @@ const Shop = () => {
                     (
                     {
                       products.filter(
-                        (product) => product.category == "men's clothing"
+                        (product) => product.category === "men's clothing"
                       ).length
                     }
                     )
@@ -75,7 +164,7 @@ const Shop = () => {
                     (
                     {
                       products.filter(
-                        (product) => product.category == "women's clothing"
+                        (product) => product.category === "women's clothing"
                       ).length
                     }
                     )
@@ -87,7 +176,7 @@ const Shop = () => {
                     (
                     {
                       products.filter(
-                        (product) => product.category == "jewelery"
+                        (product) => product.category === "jewelery"
                       ).length
                     }
                     )
@@ -99,7 +188,7 @@ const Shop = () => {
                     (
                     {
                       products.filter(
-                        (product) => product.category == "electronics"
+                        (product) => product.category === "electronics"
                       ).length
                     }
                     )
@@ -107,19 +196,22 @@ const Shop = () => {
                 </h6>
               </div>
             </div>
+
             {loading && (
-              <div className="col-9 d-flex justify-content-center align-items-center">
+              <div className="col-12 col-md-9 row ">
                 <Loading />
               </div>
             )}
 
-            <div className="col-9 d-flex flex-wrap  ">
-              {products.map((product, index) => (
-                <div key={index} className="col-12 col-md-6 col-lg-4 mb-5">
-                  <Card product={product} />
-                </div>
-              ))}
-            </div>
+            {!loading && (
+              <div className="col-12 col-md-9 row ">
+                {products.map((product, index) => (
+                  <div key={index} className="col-12 col-md-6 col-lg-4 mb-5">
+                    <Card product={product} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

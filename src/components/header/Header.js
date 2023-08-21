@@ -24,7 +24,7 @@ const Header = () => {
           <img src="/logo.svg" alt="logo" />
         </Link>
 
-        <div className="headerOptions justify-content-end d-flex d-md-none">
+        <div className="headerOptions justify-content-end d-flex gap-3 d-md-none">
           <div className="">
             <Link to={"cart"}>
               <FiShoppingCart />
