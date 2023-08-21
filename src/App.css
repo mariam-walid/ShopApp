@@ -1,0 +1,16 @@
+/* shop */
+
+
+.categories h6{
+    cursor: pointer;
+}
+.categories h6:hover{
+    color: #e63946;
+}
+
+/* product details */
+
+.prodDetails img{
+    height: 18rem;
+}
+

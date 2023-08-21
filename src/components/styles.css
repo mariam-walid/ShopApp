@@ -1,0 +1,47 @@
+/* card */
+
+.card{
+    max-width: 16rem;
+    overflow: hidden;
+    transition: all 0.5s ease 0s;
+}
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.08) 10px 10px 20px ;
+}
+.card-img-top{
+    height: 14rem;
+}
+
+.cardBtn .btn{
+    border-radius: 0 !important;
+}
+.cardBtn  {
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    right: 0;
+    transition: ease all .7s;
+}
+.card:hover .cardBtn{
+    bottom: 0;
+}
+.prodTitle{
+    font-weight: 500;
+}
+.prodTitle:hover{
+    color: #e63946 !important;
+    transition: ease all .7s;
+}
+
+/* footer */
+footer a{
+    color: rgb(255, 255, 255, 0.75);
+    transition: all 1s ease;
+}
+footer a:hover{
+    color: #ffffff;
+}
+footer a svg{
+    width: 30px;
+    height: 30px;
+}

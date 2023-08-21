@@ -1,0 +1,87 @@
+.loginMain{
+    background: #F7F6F0;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0.5rem; */
+}
+.loginContainer{
+    background: #ffffff;
+    border: 1px solid #cbd6cf;
+    border-radius: 10px;
+    /* padding: 2.5rem 3rem;
+    width: 40%; */
+}
+.loginContainer>h3,
+.loginContainer>p{
+    /* text-align: center; */
+}
+.loginContainer>p{
+    /* font-size: 18px;
+    font-weight: 400; */
+}
+.loginContainer form{
+    /* margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem; */
+
+}
+.inputContainer{
+    /* display: flex;
+    flex-direction: column;
+    gap: 0.5rem; */
+}
+.inputContainer label{
+    /* font-size: 18px; */
+    color: #2b3d4c;
+}
+.inputContainer input{
+    /* padding: 0.5rem 1rem; */
+    border-radius: 0.5rem;
+    border: 1px solid #d9d9d9;
+    outline: none;
+}
+.loginFooter>div{
+    /* display: flex;
+    justify-content: space-between; */
+}
+.loginFooter span{
+    /* font-size: 14px; */
+    color: #2b3d4c;
+}
+.loginFooter button{
+    /* width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.8rem; */
+    background: rgba(217, 217, 217, 0.35);
+    border: 1px solid rgba(217, 217, 217, 0.35);
+    /* border-radius: 14px;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+    font-weight: 500; */
+    transition: all 1s ease;
+}
+
+.loginFooter button:hover{
+    background: #d9d9d9;
+}
+.loginFooter a{
+    /* text-decoration: none;
+    font-size: 14px;
+    font-weight: 500; */
+    transition: all 1s ease;
+}
+.loginFooter a:hover{
+    color: #052c65
+}
+
+.formBtn{
+    /* background-color: #e63946; */
+    /* border: 1px solid #e63946; */
+}
+
+
+.authA:hover{
+    color: rgb(184,46,56) !important;
+}
