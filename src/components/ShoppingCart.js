@@ -89,7 +89,7 @@ const ShoppingCart = () => {
               <p className="heading">Grand Total</p>
               <p className="fw-bold">$265.00</p>
               </div>
-              <button className="btn btn-danger w-100 rounded-0 mt-3">Proceed to Checkout</button>
+              <Link to={'/check-out'} className="btn btn-danger w-100 rounded-0 mt-3">Proceed to Checkout</Link>
               </div>
             </div>
           </div>

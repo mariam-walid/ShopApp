@@ -10,7 +10,7 @@ const CategoryCard = ({img,category}) => {
           <h6 className="text-white mb-2 fw-300">NEW IN</h6>
           <h1 className="text-white">{category}</h1>
           <div className="pt-2 ">
-          <Link className="btn btn-light fs-4 " to={""}>
+          <Link className="btn btn-light fs-4 " to={"/shop"}>
             Shop Now
           </Link>
         </div>
