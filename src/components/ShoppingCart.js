@@ -32,7 +32,7 @@ const ShoppingCart = () => {
 
       <section>
         <div className="container py-4 px-3 mb-5">
-          <div className="row justify-content-between g-3">
+          <div className="row justify-content-between align-items-start g-3">
             <div className="col-12 col-lg-8">
               <div className="border-bottom d-flex justify-content-between py-3">
                 <h3 className="heading">Products</h3>
@@ -40,7 +40,7 @@ const ShoppingCart = () => {
                   Continue Shopping
                 </Link>
               </div>
-              <div className="d-flex flex-column gap-4  my-3 border-bottom pb-3">
+              <div className="d-flex flex-column flex-md-row gap-4 justify-content-between my-3 border-bottom pb-3">
                 <div className="flex-shrink-0 me-3 text-center">
                   <img src="/women.jpg" alt="product" width="120" />
                 </div>
