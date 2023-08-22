@@ -29,9 +29,9 @@ function CheckOut() {
       </section>
 
       <section>
-        <div className='container my-4'>
+        <div className='container my-4 px-4'>
 
-            <div className='row justify-content-between align-items-start'>
+            <div className='row justify-content-center justify-content-lg-between  align-items-start gap-4'>
 
                 <div className='col-12 col-lg-7 border row  justify-content-between'>
                     <div className='border-bottom col-12 py-3 mb-3'>
