@@ -31,8 +31,8 @@ const ShoppingCart = () => {
       </section>
 
       <section>
-        <div className="container my-5">
-          <div className="row justify-content-between">
+        <div className="container py-4 px-3 mb-5">
+          <div className="row justify-content-between g-3">
             <div className="col-12 col-lg-8">
               <div className="border-bottom d-flex justify-content-between py-3">
                 <h3 className="heading">Products</h3>
@@ -69,7 +69,7 @@ const ShoppingCart = () => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-lg-3 border p-0">
+            <div className="col-12 col-lg-3 border p-0 ">
               <div className="border-bottom p-3">
               <h5 className="heading">Order Total</h5>
               </div>
