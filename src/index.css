@@ -29,3 +29,6 @@ a{
   border-color: #f39ca3 !important;
   box-shadow: unset !important;
 }
+.btn{
+  font-weight: 500 !important;
+}

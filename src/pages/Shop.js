@@ -49,7 +49,7 @@ const Shop = () => {
       <section>
         <div className="container py-md-5 mt-4">
           <div className="row g-4  justify-content-center justify-content-md-between">
-            <div className="col-12 d-md-none d-flex align-items-center gap-3">
+            <div className="col-12 d-md-none d-flex align-items-center gap-3 mb-2">
               
               <button
                 class="btn btn-sm border rounded-0"
@@ -62,23 +62,23 @@ const Shop = () => {
               <h6 className="heading">Filter Products</h6>
 
               <div
-                class="offcanvas offcanvas-start"
+                className="offcanvas offcanvas-start"
                 tabindex="-1"
                 id="categoriesFilter"
                 aria-labelledby="filterLabel"
               >
-                <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="filterLabel">
+                <div className="offcanvas-header">
+                  <h5 className="offcanvas-title" id="filterLabel">
                     Shpo Filter
                   </h5>
                   <button
                     type="button"
-                    class="btn-close text-reset"
+                    className="btn-close text-reset"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
                   ></button>
                 </div>
-                <div class="offcanvas-body">
+                <div className="offcanvas-body">
                 <div className="d-flex flex-column mt-3 gap-3 categories">
                 <h6 onClick={() => setCategory("")}>
                   All Products{" "}

@@ -45,3 +45,12 @@ footer a svg{
     width: 30px;
     height: 30px;
 }
+
+/* shopping cart */
+.arrow{
+    cursor: pointer;
+    transition: all .7s ease;
+}
+.arrow:hover{
+    color: #000;
+}
