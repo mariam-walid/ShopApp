@@ -4,12 +4,13 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import About from './pages/About';
 import Contact from './pages/Contact';
-import ShoppingCart from "./components/ShoppingCart";
+import ShoppingCart from "./pages/ShoppingCart";
 import Login from './pages/auth/Login';
 import Register from "./pages/auth/Register";
 import Header from "./components/header/Header";
-import Footer from "./components//Footer";
+import Footer from "./components/Footer";
 import ProductDetails from "./pages/ProductDetails";
+import CheckOut from "./pages/CheckOut";
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
             <Route path='cart' element={<ShoppingCart/>}/>
             <Route path='login' element={<Login/>}/>
             <Route path='register' element={<Register/>}/>
-            <Route path="/product/:id" element={<ProductDetails/>}/>
+            <Route path="product/:id" element={<ProductDetails/>}/>
+            <Route path='checkout' element={<CheckOut/>}/>
+
         </Routes>
         <Footer/>
       </BrowserRouter>

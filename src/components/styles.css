@@ -54,3 +54,6 @@ footer a svg{
 .arrow:hover{
     color: #000;
 }
+.link-danger{
+    cursor: pointer;
+}
