@@ -7,7 +7,8 @@ import {HiMenuAlt2} from "react-icons/hi"
 const Shop = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [category, setCategory] = useState("");
+  const [fliter, setFliter] = useState(products);
+  const [category, setCategory] = useState(products);
 
   const fetchProducts = async () => {
     try {
@@ -15,6 +16,7 @@ const Shop = () => {
       const data = await response.json();
       setLoading(false);
       setProducts(data);
+      setCategory(data);
     } catch (error) {
       console.log("Error fetching products", error, category);
     }
@@ -22,6 +24,11 @@ const Shop = () => {
   useEffect(() => {
     fetchProducts();
   });
+
+  const filterProducts = (filter) => {
+    const filtered = products.filter(product => product.category === filter)
+    setCategory(filtered)
+  }
   return (
     <>
       <section className="bg-gray-100">
@@ -52,7 +59,7 @@ const Shop = () => {
             <div className="col-12 d-md-none d-flex align-items-center gap-3 mb-2">
               
               <button
-                class="btn btn-sm border rounded-0"
+                className="btn btn-sm border rounded-0"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#categoriesFilter"
                 aria-controls="categoriesFilter"
@@ -63,7 +70,7 @@ const Shop = () => {
 
               <div
                 className="offcanvas offcanvas-start"
-                tabindex="-1"
+                tabIndex="-1"
                 id="categoriesFilter"
                 aria-labelledby="filterLabel"
               >
@@ -80,11 +87,11 @@ const Shop = () => {
                 </div>
                 <div className="offcanvas-body">
                 <div className="d-flex flex-column mt-3 gap-3 categories">
-                <h6 onClick={() => setCategory("")}>
+                <h6 onClick={() => setCategory("all")}>
                   All Products{" "}
                   <span className="text-muted">({products.length})</span>{" "}
                 </h6>
-                <h6 onClick={() => setCategory("men's clothing")}>
+                <h6 onClick={() => filterProducts("men's clothing")}>
                   Men{" "}
                   <span className="text-muted">
                     (
@@ -96,7 +103,7 @@ const Shop = () => {
                     )
                   </span>
                 </h6>
-                <h6 onClick={() => setCategory("women's clothing")}>
+                <h6 onClick={() => filterProducts("women's clothing")}>
                   Women{" "}
                   <span className="text-muted">
                     (
@@ -108,7 +115,7 @@ const Shop = () => {
                     )
                   </span>
                 </h6>
-                <h6 onClick={() => setCategory("jewelery")}>
+                <h6 onClick={() => filterProducts("jewelery")}>
                   Jewelery{" "}
                   <span className="text-muted">
                     (
@@ -120,7 +127,7 @@ const Shop = () => {
                     )
                   </span>
                 </h6>
-                <h6 onClick={() => setCategory("electronics")}>
+                <h6 onClick={() => filterProducts("electronics")}>
                   Electronics{" "}
                   <span className="text-muted">
                     (
@@ -142,7 +149,7 @@ const Shop = () => {
                 <h5 className="heading text">CATEGORIES</h5>
               </div>
               <div className="d-flex flex-column mt-3 gap-3 categories">
-                <h6 onClick={() => setCategory("")}>
+                <h6 onClick={() => setCategory(products)}>
                   All Products{" "}
                   <span className="text-muted">({products.length})</span>{" "}
                 </h6>
@@ -205,8 +212,8 @@ const Shop = () => {
 
             {!loading && (
               <div className="col-12 col-md-9 row ">
-                {products.map((product, index) => (
-                  <div key={index} className="col-12 col-md-6 col-lg-4 mb-5">
+                {category.map((product, index) => (
+                  <div key={index} className="col-12 col-md-6 col-lg-4 mb-3">
                     <Card product={product} />
                   </div>
                 ))}

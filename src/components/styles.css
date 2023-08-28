@@ -12,9 +12,7 @@
     height: 14rem;
 }
 
-.cardBtn .btn{
-    border-radius: 0 !important;
-}
+
 .cardBtn  {
     position: absolute;
     bottom: -50%;

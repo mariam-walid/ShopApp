@@ -5,16 +5,16 @@ import { FiShoppingCart } from "react-icons/fi";
 
 const Card = ({ product }) => {
   return (
-    <div className="card h-100 m-auto py-2 border-light rounded-0 ">
+    <div className="card h-100 m-auto py-2 border ">
       <div className="position-relative overflow-hidden">
         <img
           src={product.image}
           alt={product.title}
           className="card-img-top d-block w-100 border-bottom border-light "
         />
-        <div className="cardBtn ">
-          <button className="btn btn-danger w-100 fs-5">
-            <FiShoppingCart className="me-1 " /> Add to cart
+        <div className="cardBtn d-none d-lg-block">
+          <button className="btn btn-danger w-100 fs-5 rounded-0">
+            <FiShoppingCart className="me-1" /> Add to cart
           </button>
         </div>
       </div>
@@ -27,6 +27,9 @@ const Card = ({ product }) => {
           {product.title}
         </Link>
         <p className="text-danger fw-bold mt-3">${product.price}</p>
+        <button className="btn btn-danger fs-5 d-lg-none">
+            <FiShoppingCart className="me-1" /> Add to cart
+          </button>
       </div>
     </div>
   );
