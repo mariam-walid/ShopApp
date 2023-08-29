@@ -15,7 +15,11 @@ const Home = () => {
   useEffect(() => {
     const fetchLatest = async () => {
       try {
-        const res = await fetch("https://fakestoreapi.com/products?limit=8");
+        const res = await fetch("https://fakestoreapi.com/products?limit=8",{
+          headers : {
+            mode : 'no-cors'
+          }
+        });
         const data = await res.json();
         setLatestArrivals(data);
         setLoading(false);

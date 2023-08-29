@@ -4,8 +4,11 @@ import { NavLink, Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 import { GoPerson } from "react-icons/go";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+
 
 const Header = () => {
+  const cartList = useSelector(state=>state.cart.cartList)
   return (
     <nav className="navbar navbar-expand-md bg-white sticky-top">
       <div className="container py-2 px-4">
@@ -26,8 +29,9 @@ const Header = () => {
 
         <div className="headerOptions justify-content-end d-flex gap-3 d-md-none">
           <div className="">
-            <Link to={"cart"}>
+            <Link to={"cart"} className="position-relative">
               <FiShoppingCart />
+              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> {cartList.length} </span>
             </Link>
           </div>
           <div className="">
@@ -55,15 +59,16 @@ const Header = () => {
             </div>
           </div>
           <div className="headerOptions navbar-nav col-6 justify-content-end row d-none d-md-flex">
-            <div className="search  col-9 col-lg-7">
+            {/* <div className="search  col-9 col-lg-7">
               <input type="text" placeholder="Search Products" />
               <span>
                 <AiOutlineSearch />
               </span>
-            </div>
+            </div> */}
             <div className="col-1">
-              <Link to={"cart"}>
+              <Link to={"cart"} className="position-relative">
                 <FiShoppingCart />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> {cartList.length} </span>
               </Link>
             </div>
             <div className="col-1">

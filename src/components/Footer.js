@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import "./styles.css";
+import { useDispatch, useSelector } from "react-redux";
+import { filterByCategory, setCategories } from "../store/productsSlice";
+
 const Footer = () => {
-  const [categories, setCategories] = useState([]);
+
+  const {categories} = useSelector(state=>state.products)
+  const dispatch = useDispatch()
+
   const fetchCategories = async () => {
     try{
       const response = await fetch(
         "https://fakestoreapi.com/products/categories"
       );
       const data = await response.json();
-      setCategories(data);
+      dispatch(setCategories(data))
     }catch(error){
       console.log('Error fetching categories',error)
     }
@@ -19,7 +25,7 @@ const Footer = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [dispatch]);
 
   return (
     <footer className="container-fluid p-5 bg-dark text-white">
@@ -34,7 +40,7 @@ const Footer = () => {
           <div className="row justify-content-center mt-4">
             {categories.map((category, index) => (
               <div className="col-12 col-md-5 col-lg-3 mb-2" key={index}>
-              <Link className="text-capitalize ">{category}</Link>
+              <Link to={'/shop'} className="text-capitalize " onClick={()=>dispatch(filterByCategory(category))}>{category}</Link>
               </div>
             ))}
           </div>

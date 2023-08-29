@@ -1,34 +1,33 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Card from "../components/Card";
-import { Link} from "react-router-dom";
-import {HiMenuAlt2} from "react-icons/hi"
+import { Link } from "react-router-dom";
+import { HiMenuAlt2 } from "react-icons/hi";
+import { setProducts, filterByCategory } from "../store/productsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Shop = () => {
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [fliter, setFliter] = useState(products);
-  const [category, setCategory] = useState(products);
+
+  const { filteredProducts, categories, selectedCategory } = useSelector(
+    (state) => state.products
+  );
+  const dispatch = useDispatch();
 
   const fetchProducts = async () => {
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
       setLoading(false);
-      setProducts(data);
-      setCategory(data);
+      dispatch(setProducts(data));
     } catch (error) {
-      console.log("Error fetching products", error, category);
+      console.log("Error fetching products", error);
     }
   };
   useEffect(() => {
     fetchProducts();
-  });
+  }, [dispatch]);
 
-  const filterProducts = (filter) => {
-    const filtered = products.filter(product => product.category === filter)
-    setCategory(filtered)
-  }
   return (
     <>
       <section className="bg-gray-100">
@@ -57,14 +56,13 @@ const Shop = () => {
         <div className="container py-md-5 mt-4">
           <div className="row g-4  justify-content-center justify-content-md-between">
             <div className="col-12 d-md-none d-flex align-items-center gap-3 mb-2">
-              
               <button
                 className="btn btn-sm border rounded-0"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#categoriesFilter"
                 aria-controls="categoriesFilter"
               >
-                <HiMenuAlt2 className="fs-2"/>
+                <HiMenuAlt2 className="fs-2" />
               </button>
               <h6 className="heading">Filter Products</h6>
 
@@ -76,7 +74,7 @@ const Shop = () => {
               >
                 <div className="offcanvas-header">
                   <h5 className="offcanvas-title" id="filterLabel">
-                    Shpo Filter
+                    Shop Filter
                   </h5>
                   <button
                     type="button"
@@ -86,60 +84,25 @@ const Shop = () => {
                   ></button>
                 </div>
                 <div className="offcanvas-body">
-                <div className="d-flex flex-column mt-3 gap-3 categories">
-                <h6 onClick={() => setCategory("all")}>
-                  All Products{" "}
-                  <span className="text-muted">({products.length})</span>{" "}
-                </h6>
-                <h6 onClick={() => filterProducts("men's clothing")}>
-                  Men{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "men's clothing"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => filterProducts("women's clothing")}>
-                  Women{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "women's clothing"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => filterProducts("jewelery")}>
-                  Jewelery{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "jewelery"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => filterProducts("electronics")}>
-                  Electronics{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "electronics"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-              </div>
+                  <div className="d-flex flex-column mt-3 gap-3 categories">
+                    <h6
+                      className={!selectedCategory ? "text-danger" : ""}
+                      onClick={() => dispatch(filterByCategory(null))}
+                    >
+                      All Products
+                    </h6>
+                    {categories.map((category, index) => (
+                      <h6
+                        key={index}
+                        className={`text-capitalize ${
+                          category === selectedCategory ? "text-danger" : ""
+                        }`}
+                        onClick={() => dispatch(filterByCategory(category))}
+                      >
+                        {category}
+                      </h6>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,58 +112,23 @@ const Shop = () => {
                 <h5 className="heading text">CATEGORIES</h5>
               </div>
               <div className="d-flex flex-column mt-3 gap-3 categories">
-                <h6 onClick={() => setCategory(products)}>
-                  All Products{" "}
-                  <span className="text-muted">({products.length})</span>{" "}
+                <h6
+                  className={!selectedCategory ? "text-danger" : ""}
+                  onClick={() => dispatch(filterByCategory(null))}
+                >
+                  All Products
                 </h6>
-                <h6 onClick={() => setCategory("men's clothing")}>
-                  Men{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "men's clothing"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => setCategory("women's clothing")}>
-                  Women{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "women's clothing"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => setCategory("jewelery")}>
-                  Jewelery{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "jewelery"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
-                <h6 onClick={() => setCategory("electronics")}>
-                  Electronics{" "}
-                  <span className="text-muted">
-                    (
-                    {
-                      products.filter(
-                        (product) => product.category === "electronics"
-                      ).length
-                    }
-                    )
-                  </span>
-                </h6>
+                {categories.map((category, index) => (
+                  <h6
+                    key={index}
+                    className={`text-capitalize ${
+                      category === selectedCategory ? "text-danger" : ""
+                    }`}
+                    onClick={() => dispatch(filterByCategory(category))}
+                  >
+                    {category}
+                  </h6>
+                ))}
               </div>
             </div>
 
@@ -212,7 +140,7 @@ const Shop = () => {
 
             {!loading && (
               <div className="col-12 col-md-9 row ">
-                {category.map((product, index) => (
+                {filteredProducts.map((product, index) => (
                   <div key={index} className="col-12 col-md-6 col-lg-4 mb-3">
                     <Card product={product} />
                   </div>
