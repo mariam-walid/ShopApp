@@ -26,6 +26,7 @@ const Shop = () => {
   };
   useEffect(() => {
     fetchProducts();
+    dispatch(filterByCategory(null))
   }, [dispatch]);
 
   return (
